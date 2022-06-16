@@ -1,0 +1,837 @@
+# imports or global variables 
+
+
+current_cubing_state=[]
+solving_algorithm=[]
+
+# region Inputting the first state of the cube 
+print("Please put a space between each of your inputs per side like R G instead of RG, thanks")
+s_r=input("Input the current state of the red side of the cube when white is on the top: ")
+s_b=input("Input the current state of the blue side of the cube when white is on the top: ")
+s_o=input("Input the current state of the orange side of the cube when white is on the top: ")
+s_g=input("Input the current state of the green side of the cube when white is on the top: ")
+s_w=input("Input the current state of the white side of the cube when blue is on the top: ")
+s_y=input("Input the current state of the yellow side of the cube when blue is on the top: ")
+
+
+def innitial_state_of_cube(r, b, o, g, w, y):
+    r+=" "
+    b+=" "
+    o+=" "
+    g+=" "
+    w+=" "
+    s_together=r+b+o+g+w+y
+    innitial_cubing_state=[]
+    innitial_cubing_state=s_together.split(" ")
+    return current_cubing_state
+# endregion
+current_cubing_state=innitial_state_of_cube(s_r, s_b, s_o, s_g, s_w, s_y)
+
+
+# region Cubing Moves
+# define 12 functions that update the cubing state when those moves are called upon
+# use parameters to help update the side needed
+    # all moves are done with green side facing forward and white face facing upwards
+def right():
+    A=current_cubing_state[38]
+    B=current_cubing_state[41]
+    C=current_cubing_state[44]
+    D=current_cubing_state[0]
+    E=current_cubing_state[1]
+    F=current_cubing_state[2]
+    G=current_cubing_state[3]
+    H=current_cubing_state[5]
+    I=current_cubing_state[6]
+    J=current_cubing_state[7]
+    K=current_cubing_state[8]
+    #white right
+    current_cubing_state[38] = current_cubing_state[29]
+    current_cubing_state[41] = current_cubing_state[32]
+    current_cubing_state[44] = current_cubing_state[35]
+    #green right
+    current_cubing_state[29] = current_cubing_state[51]
+    current_cubing_state[32] = current_cubing_state[48]
+    current_cubing_state[35] = current_cubing_state[45]
+    #yellow right
+    current_cubing_state[51] = current_cubing_state[15]
+    current_cubing_state[48] = current_cubing_state[12]
+    current_cubing_state[45] = current_cubing_state[9]
+    #blue right
+    current_cubing_state[15] = A
+    current_cubing_state[12] = B
+    current_cubing_state[9] = C
+    #red face
+    current_cubing_state[0]=I
+    current_cubing_state[1]=G
+    current_cubing_state[2]=D
+    current_cubing_state[3]=J
+    current_cubing_state[5]=E
+    current_cubing_state[6]=K
+    current_cubing_state[7]=H
+    current_cubing_state[8]=F
+    solving_algorithm.append("R")
+def right_inverted():
+    A=current_cubing_state[38]
+    B=current_cubing_state[41]
+    C=current_cubing_state[44]
+    D=current_cubing_state[0]
+    E=current_cubing_state[1]
+    F=current_cubing_state[2]
+    G=current_cubing_state[3]
+    H=current_cubing_state[5]
+    I=current_cubing_state[6]
+    J=current_cubing_state[7]
+    K=current_cubing_state[8]
+    #white right
+    current_cubing_state[38] = current_cubing_state[15]
+    current_cubing_state[41] = current_cubing_state[12]
+    current_cubing_state[44] = current_cubing_state[9]
+    #blue right
+    current_cubing_state[15] = current_cubing_state[51]
+    current_cubing_state[12] = current_cubing_state[48]
+    current_cubing_state[9] = current_cubing_state[45]
+    #yellow right
+    current_cubing_state[51] = current_cubing_state[29]
+    current_cubing_state[48] = current_cubing_state[32]
+    current_cubing_state[45] = current_cubing_state[35]
+    #green right
+    current_cubing_state[29] = A
+    current_cubing_state[32] = B
+    current_cubing_state[35] = C
+    #red face
+    current_cubing_state[0]=F
+    current_cubing_state[1]=H
+    current_cubing_state[2]=K
+    current_cubing_state[3]=E
+    current_cubing_state[5]=J
+    current_cubing_state[6]=D
+    current_cubing_state[7]=G
+    current_cubing_state[8]=I
+    solving_algorithm.append("/R")
+def left():
+    A=current_cubing_state[36]
+    B=current_cubing_state[39]
+    C=current_cubing_state[42]
+    D=current_cubing_state[18]
+    E=current_cubing_state[19]
+    F=current_cubing_state[20]
+    G=current_cubing_state[21]
+    H=current_cubing_state[23]
+    I=current_cubing_state[24]
+    J=current_cubing_state[25]
+    K=current_cubing_state[26]
+    #white left
+    current_cubing_state[36] = current_cubing_state[17]
+    current_cubing_state[39] = current_cubing_state[14]
+    current_cubing_state[42] = current_cubing_state[11]
+    #blue left
+    current_cubing_state[17] = current_cubing_state[53]
+    current_cubing_state[14] = current_cubing_state[50]
+    current_cubing_state[11] = current_cubing_state[47]
+    #yellow left
+    current_cubing_state[53] = current_cubing_state[27]
+    current_cubing_state[50] = current_cubing_state[30]
+    current_cubing_state[47] = current_cubing_state[33]
+    #green left
+    current_cubing_state[27] = A
+    current_cubing_state[30] = B
+    current_cubing_state[33] = C
+    #orange face
+    current_cubing_state[18]=I
+    current_cubing_state[19]=G
+    current_cubing_state[20]=D
+    current_cubing_state[21]=J
+    current_cubing_state[23]=E
+    current_cubing_state[24]=K
+    current_cubing_state[25]=H
+    current_cubing_state[26]=F
+    solving_algorithm.append("L")
+def left_inverted():
+    A=current_cubing_state[36]
+    B=current_cubing_state[39]
+    C=current_cubing_state[42]
+    D=current_cubing_state[18]
+    E=current_cubing_state[19]
+    F=current_cubing_state[20]
+    G=current_cubing_state[21]
+    H=current_cubing_state[23]
+    I=current_cubing_state[24]
+    J=current_cubing_state[25]
+    K=current_cubing_state[26]
+    #white left
+    current_cubing_state[36] = current_cubing_state[27]
+    current_cubing_state[39] = current_cubing_state[30]
+    current_cubing_state[42] = current_cubing_state[33]
+    #green left
+    current_cubing_state[27] = current_cubing_state[53]
+    current_cubing_state[30] = current_cubing_state[50]
+    current_cubing_state[33] = current_cubing_state[47]
+    #yellow left
+    current_cubing_state[53] = current_cubing_state[17]
+    current_cubing_state[50] = current_cubing_state[14]
+    current_cubing_state[47] = current_cubing_state[11]
+    #blue left
+    current_cubing_state[17] = A
+    current_cubing_state[14] = B
+    current_cubing_state[11] = C
+    #orange face
+    current_cubing_state[18]=F
+    current_cubing_state[19]=H
+    current_cubing_state[20]=K
+    current_cubing_state[21]=E
+    current_cubing_state[23]=J
+    current_cubing_state[24]=D
+    current_cubing_state[25]=G
+    current_cubing_state[26]=I
+    solving_algorithm.append("/L")
+def up():
+    A=current_cubing_state[27]
+    B=current_cubing_state[28]
+    C=current_cubing_state[29]
+    D=current_cubing_state[36]
+    E=current_cubing_state[37]
+    F=current_cubing_state[38]
+    G=current_cubing_state[39]
+    H=current_cubing_state[41]
+    I=current_cubing_state[42]
+    J=current_cubing_state[43]
+    K=current_cubing_state[44]
+    #green up
+    current_cubing_state[27] = current_cubing_state[0]
+    current_cubing_state[28] = current_cubing_state[1]
+    current_cubing_state[29] = current_cubing_state[2]
+    #red up
+    current_cubing_state[0] = current_cubing_state[9]
+    current_cubing_state[1] = current_cubing_state[10]
+    current_cubing_state[2] = current_cubing_state[11]
+    #blue up
+    current_cubing_state[9] = current_cubing_state[18]
+    current_cubing_state[10] = current_cubing_state[19]
+    current_cubing_state[11] = current_cubing_state[20]
+    #orange up
+    current_cubing_state[18] = A
+    current_cubing_state[19] = B
+    current_cubing_state[20] = C
+    #white face
+    current_cubing_state[36]=I
+    current_cubing_state[37]=G
+    current_cubing_state[38]=D
+    current_cubing_state[39]=J
+    current_cubing_state[41]=E
+    current_cubing_state[42]=K
+    current_cubing_state[43]=H
+    current_cubing_state[44]=F
+    solving_algorithm.append("U")
+def up_inverted():
+    A=current_cubing_state[27]
+    B=current_cubing_state[28]
+    C=current_cubing_state[29]
+    D=current_cubing_state[36]
+    E=current_cubing_state[37]
+    F=current_cubing_state[38]
+    G=current_cubing_state[39]
+    H=current_cubing_state[41]
+    I=current_cubing_state[42]
+    J=current_cubing_state[43]
+    K=current_cubing_state[44]
+    #green up
+    current_cubing_state[27] = current_cubing_state[18]
+    current_cubing_state[28] = current_cubing_state[19]
+    current_cubing_state[29] = current_cubing_state[20]
+    #orange up
+    current_cubing_state[18] = current_cubing_state[9]
+    current_cubing_state[19] = current_cubing_state[10]
+    current_cubing_state[20] = current_cubing_state[11]
+    #blue up
+    current_cubing_state[9] = current_cubing_state[0]
+    current_cubing_state[10] = current_cubing_state[1]
+    current_cubing_state[11] = current_cubing_state[2]
+    #red up
+    current_cubing_state[0] = A
+    current_cubing_state[1] = B
+    current_cubing_state[2] = C
+    #white face
+    current_cubing_state[36]=F
+    current_cubing_state[37]=H
+    current_cubing_state[38]=K
+    current_cubing_state[39]=E
+    current_cubing_state[41]=J
+    current_cubing_state[42]=D
+    current_cubing_state[43]=G
+    current_cubing_state[44]=I
+    solving_algorithm.append("/U")
+def down():
+    A=current_cubing_state[33]
+    B=current_cubing_state[34]
+    C=current_cubing_state[35]
+    D=current_cubing_state[45]
+    E=current_cubing_state[46]
+    F=current_cubing_state[47]
+    G=current_cubing_state[48]
+    H=current_cubing_state[50]
+    I=current_cubing_state[51]
+    J=current_cubing_state[52]
+    K=current_cubing_state[53]
+    #green down
+    current_cubing_state[33] = current_cubing_state[24]
+    current_cubing_state[34] = current_cubing_state[25]
+    current_cubing_state[35] = current_cubing_state[26]
+    #orange down
+    current_cubing_state[24] = current_cubing_state[15]
+    current_cubing_state[25] = current_cubing_state[16]
+    current_cubing_state[26] = current_cubing_state[17]
+    #blue down
+    current_cubing_state[15] = current_cubing_state[6]
+    current_cubing_state[16] = current_cubing_state[7]
+    current_cubing_state[17] = current_cubing_state[8]
+    #red up
+    current_cubing_state[6] = A
+    current_cubing_state[7] = B
+    current_cubing_state[8] = C
+    #yellow face    
+    current_cubing_state[45]=I
+    current_cubing_state[46]=G
+    current_cubing_state[47]=D
+    current_cubing_state[48]=J
+    current_cubing_state[50]=E
+    current_cubing_state[51]=K
+    current_cubing_state[52]=H
+    current_cubing_state[53]=F
+    solving_algorithm.append("D")
+def down_inverted():
+    A=current_cubing_state[33]
+    B=current_cubing_state[34]
+    C=current_cubing_state[35]
+    D=current_cubing_state[45]
+    E=current_cubing_state[46]
+    F=current_cubing_state[47]
+    G=current_cubing_state[48]
+    H=current_cubing_state[50]
+    I=current_cubing_state[51]
+    J=current_cubing_state[52]
+    K=current_cubing_state[53]
+    #green down
+    current_cubing_state[33] = current_cubing_state[6]
+    current_cubing_state[34] = current_cubing_state[7]
+    current_cubing_state[35] = current_cubing_state[8]
+    #red down
+    current_cubing_state[6] = current_cubing_state[15]
+    current_cubing_state[7] = current_cubing_state[16]
+    current_cubing_state[8] = current_cubing_state[17]
+    #blue down
+    current_cubing_state[15] = current_cubing_state[24]
+    current_cubing_state[16] = current_cubing_state[25]
+    current_cubing_state[17] = current_cubing_state[26]
+    #orange up
+    current_cubing_state[24] = A
+    current_cubing_state[25] = B
+    current_cubing_state[26] = C
+    #yellow face    
+    current_cubing_state[45]=F
+    current_cubing_state[46]=H
+    current_cubing_state[47]=K
+    current_cubing_state[48]=E
+    current_cubing_state[50]=J
+    current_cubing_state[51]=D
+    current_cubing_state[52]=G
+    current_cubing_state[53]=I
+    solving_algorithm.append("/D")
+def front():
+    A=current_cubing_state[42]
+    B=current_cubing_state[43]
+    C=current_cubing_state[44]
+    D=current_cubing_state[27]
+    E=current_cubing_state[28]
+    F=current_cubing_state[29]
+    G=current_cubing_state[30]
+    H=current_cubing_state[32]
+    I=current_cubing_state[33]
+    J=current_cubing_state[34]
+    K=current_cubing_state[35]
+    #white down
+    current_cubing_state[42] = current_cubing_state[26]
+    current_cubing_state[43] = current_cubing_state[23]
+    current_cubing_state[44] = current_cubing_state[20]
+    #orange right
+    current_cubing_state[26] = current_cubing_state[53]
+    current_cubing_state[23] = current_cubing_state[52]
+    current_cubing_state[20] = current_cubing_state[51]
+    #yellow down
+    current_cubing_state[53] = current_cubing_state[6]
+    current_cubing_state[52] = current_cubing_state[3]
+    current_cubing_state[51] = current_cubing_state[0]
+    #red left
+    current_cubing_state[6] = C
+    current_cubing_state[3] = B
+    current_cubing_state[0] = A
+    #green face    
+    current_cubing_state[27]=I
+    current_cubing_state[28]=G
+    current_cubing_state[29]=D
+    current_cubing_state[30]=J
+    current_cubing_state[32]=E
+    current_cubing_state[33]=K
+    current_cubing_state[34]=H
+    current_cubing_state[35]=F
+    solving_algorithm.append("F")
+def front_inverted():
+    A=current_cubing_state[42]
+    B=current_cubing_state[43]
+    C=current_cubing_state[44]
+    D=current_cubing_state[27]
+    E=current_cubing_state[28]
+    F=current_cubing_state[29]
+    G=current_cubing_state[30]
+    H=current_cubing_state[32]
+    I=current_cubing_state[33]
+    J=current_cubing_state[34]
+    K=current_cubing_state[35]
+    #white down
+    current_cubing_state[42] = current_cubing_state[0]
+    current_cubing_state[43] = current_cubing_state[3]
+    current_cubing_state[44] = current_cubing_state[6]
+    #red left
+    current_cubing_state[0] = current_cubing_state[51]
+    current_cubing_state[3] = current_cubing_state[52]
+    current_cubing_state[6] = current_cubing_state[53]
+    #yellow down
+    current_cubing_state[53] = current_cubing_state[20]
+    current_cubing_state[52] = current_cubing_state[23]
+    current_cubing_state[51] = current_cubing_state[26]
+    #orange right
+    current_cubing_state[20] = C
+    current_cubing_state[23] = B
+    current_cubing_state[26] = A
+    #green face    
+    current_cubing_state[27]=F
+    current_cubing_state[28]=H
+    current_cubing_state[29]=K
+    current_cubing_state[30]=E
+    current_cubing_state[32]=J
+    current_cubing_state[33]=D
+    current_cubing_state[34]=G
+    current_cubing_state[35]=I
+    solving_algorithm.append("/F")
+def back():
+    A=current_cubing_state[36]
+    B=current_cubing_state[37]
+    C=current_cubing_state[38]
+    D=current_cubing_state[9]
+    E=current_cubing_state[10]
+    F=current_cubing_state[11]
+    G=current_cubing_state[12]
+    H=current_cubing_state[14]
+    I=current_cubing_state[15]
+    J=current_cubing_state[16]
+    K=current_cubing_state[17]
+    #white up
+    current_cubing_state[36] = current_cubing_state[2]
+    current_cubing_state[37] = current_cubing_state[5]
+    current_cubing_state[38] = current_cubing_state[8]
+    #red left
+    current_cubing_state[2] = current_cubing_state[45]
+    current_cubing_state[5] = current_cubing_state[46]
+    current_cubing_state[8] = current_cubing_state[47]
+    #yellow up
+    current_cubing_state[45] = current_cubing_state[24]
+    current_cubing_state[46] = current_cubing_state[21]
+    current_cubing_state[47] = current_cubing_state[18]
+    #orange left
+    current_cubing_state[24] = A
+    current_cubing_state[21] = B
+    current_cubing_state[18] = C
+    #green face    
+    current_cubing_state[9]=I
+    current_cubing_state[10]=G
+    current_cubing_state[11]=D
+    current_cubing_state[12]=J
+    current_cubing_state[14]=E
+    current_cubing_state[15]=K
+    current_cubing_state[16]=H
+    current_cubing_state[17]=F
+    solving_algorithm.append("B")
+def back_inverted():
+    A=current_cubing_state[36]
+    B=current_cubing_state[37]
+    C=current_cubing_state[38]
+    D=current_cubing_state[9]
+    E=current_cubing_state[10]
+    F=current_cubing_state[11]
+    G=current_cubing_state[12]
+    H=current_cubing_state[14]
+    I=current_cubing_state[15]
+    J=current_cubing_state[16]
+    K=current_cubing_state[17]
+    #white up
+    current_cubing_state[36] = current_cubing_state[24]
+    current_cubing_state[37] = current_cubing_state[21]
+    current_cubing_state[38] = current_cubing_state[18]
+    #orange left
+    current_cubing_state[24] = current_cubing_state[45]
+    current_cubing_state[21] = current_cubing_state[46]
+    current_cubing_state[18] = current_cubing_state[47]
+    #yellow up
+    current_cubing_state[45] = current_cubing_state[2]
+    current_cubing_state[46] = current_cubing_state[5]
+    current_cubing_state[47] = current_cubing_state[8]
+    #red right
+    current_cubing_state[2] = A
+    current_cubing_state[5] = B
+    current_cubing_state[8] = C
+    #green face    
+    current_cubing_state[9]=F
+    current_cubing_state[10]=H
+    current_cubing_state[11]=K
+    current_cubing_state[12]=E
+    current_cubing_state[14]=J
+    current_cubing_state[15]=D
+    current_cubing_state[16]=G
+    current_cubing_state[17]=I
+    solving_algorithm.append("/B")
+def middle():
+    A=current_cubing_state[28]
+    B=current_cubing_state[31]
+    C= current_cubing_state[34]
+    #green face
+    current_cubing_state[28]=current_cubing_state[37]
+    current_cubing_state[31]=current_cubing_state[40]
+    current_cubing_state[34]=current_cubing_state[43]
+    #white face
+    current_cubing_state[37]=current_cubing_state[16]
+    current_cubing_state[40]=current_cubing_state[13]
+    current_cubing_state[43]=current_cubing_state[10]
+    #blue face
+    current_cubing_state[16]=current_cubing_state[52]
+    current_cubing_state[13]=current_cubing_state[49]
+    current_cubing_state[10]=current_cubing_state[46]
+    #yellow face
+    current_cubing_state[52]=A
+    current_cubing_state[49]=B
+    current_cubing_state[46]=C
+    solving_algorithm.append("M")
+def middle_inverted():
+    A=current_cubing_state[37]
+    B=current_cubing_state[40]
+    C= current_cubing_state[43]
+    #white face
+    current_cubing_state[37]=current_cubing_state[28]
+    current_cubing_state[40]=current_cubing_state[31]
+    current_cubing_state[43]=current_cubing_state[34]
+    #green face
+    current_cubing_state[28]=current_cubing_state[52]
+    current_cubing_state[31]=current_cubing_state[49]
+    current_cubing_state[34]=current_cubing_state[46]
+    #yellow face
+    current_cubing_state[52]=current_cubing_state[16]
+    current_cubing_state[49]=current_cubing_state[13]
+    current_cubing_state[46]=current_cubing_state[10]
+    #blue face
+    current_cubing_state[16]=A
+    current_cubing_state[13]=B
+    current_cubing_state[10]=C
+    solving_algorithm.append("/M")
+def equatorial():
+    A=current_cubing_state[30]
+    B=current_cubing_state[31]
+    C= current_cubing_state[32]
+    #green face
+    current_cubing_state[30]=current_cubing_state[21]
+    current_cubing_state[31]=current_cubing_state[22]
+    current_cubing_state[32]=current_cubing_state[23]
+    #orange face
+    current_cubing_state[21]=current_cubing_state[12]
+    current_cubing_state[22]=current_cubing_state[13]
+    current_cubing_state[23]=current_cubing_state[14]
+    #blue face
+    current_cubing_state[12]=current_cubing_state[3]
+    current_cubing_state[13]=current_cubing_state[4]
+    current_cubing_state[14]=current_cubing_state[5]
+    #red face
+    current_cubing_state[3]=A
+    current_cubing_state[4]=B
+    current_cubing_state[5]=C
+    solving_algorithm.append("E")
+def equatorial_inverted():
+    A=current_cubing_state[30]
+    B=current_cubing_state[31]
+    C= current_cubing_state[32]
+    #green face
+    current_cubing_state[30]=current_cubing_state[3]
+    current_cubing_state[31]=current_cubing_state[4]
+    current_cubing_state[32]=current_cubing_state[5]
+    #red face
+    current_cubing_state[3]=current_cubing_state[12]
+    current_cubing_state[4]=current_cubing_state[13]
+    current_cubing_state[5]=current_cubing_state[14]
+    #blue face
+    current_cubing_state[12]=current_cubing_state[21]
+    current_cubing_state[13]=current_cubing_state[22]
+    current_cubing_state[14]=current_cubing_state[23]
+    #orange face
+    current_cubing_state[21]=A
+    current_cubing_state[22]=B
+    current_cubing_state[23]=C
+    solving_algorithm.append("/E")
+def standing():
+    A=current_cubing_state[39]
+    B=current_cubing_state[40]
+    C= current_cubing_state[41]
+    #white face
+    current_cubing_state[39]=current_cubing_state[25]
+    current_cubing_state[40]=current_cubing_state[22]
+    current_cubing_state[41]=current_cubing_state[19]
+    #orange face
+    current_cubing_state[25]=current_cubing_state[48]
+    current_cubing_state[22]=current_cubing_state[49]
+    current_cubing_state[19]=current_cubing_state[50]
+    #yellow face
+    current_cubing_state[48]=current_cubing_state[1]
+    current_cubing_state[49]=current_cubing_state[4]
+    current_cubing_state[50]=current_cubing_state[7]
+    #red face
+    current_cubing_state[1]=A
+    current_cubing_state[4]=B
+    current_cubing_state[7]=C
+    solving_algorithm.append("S")
+def standing_inverted():
+    A=current_cubing_state[39]
+    B=current_cubing_state[40]
+    C= current_cubing_state[41]
+    #white face
+    current_cubing_state[39]=current_cubing_state[1]
+    current_cubing_state[40]=current_cubing_state[4]
+    current_cubing_state[41]=current_cubing_state[7]
+    #red face
+    current_cubing_state[1]=current_cubing_state[48]
+    current_cubing_state[4]=current_cubing_state[49]
+    current_cubing_state[7]=current_cubing_state[50]
+    #yellow face
+    current_cubing_state[48]=current_cubing_state[25]
+    current_cubing_state[49]=current_cubing_state[22]
+    current_cubing_state[50]=current_cubing_state[19]
+    #orange face
+    current_cubing_state[25]=A
+    current_cubing_state[22]=B
+    current_cubing_state[19]=C
+    solving_algorithm.append("/S")
+# endregion
+
+
+# region OLL
+# probably just a bunch of else if situations
+while current_cubing_state[36]!="W" or current_cubing_state[37]!="W" or current_cubing_state[38]!="W" or current_cubing_state[39]!="W" or current_cubing_state[40]!="W" or current_cubing_state[41]!="W" or current_cubing_state[42]!="W" or current_cubing_state[43]!="W" or current_cubing_state[44]!="W":
+    if current_cubing_state[40]=="W" and current_cubing_state[1]=="W" and current_cubing_state[10]=="W" and current_cubing_state[19]=="W" and current_cubing_state[28]=="W":
+        front()
+        up()
+        right_inverted()
+        up_inverted()
+        front_inverted()
+        front()
+        standing()
+        right()
+        up()
+        right_inverted()
+        up_inverted()
+        front_inverted()
+        standing_inverted()
+    elif current_cubing_state[40]=="W" and current_cubing_state[39]=="W" and current_cubing_state[41]=="W" and current_cubing_state[10]=="W" and current_cubing_state[28]=="W":
+        front()
+        right()
+        up()
+        right_inverted()
+        up_inverted()
+        front_inverted()
+    elif current_cubing_state[40]=="W" and current_cubing_state[41]=="W" and current_cubing_state[43]=="W" and current_cubing_state[19]=="W" and current_cubing_state[10]=="W":
+        front()
+        standing()
+        right()
+        up()
+        right_inverted()
+        up_inverted()
+        front_inverted()
+        standing_inverted()
+    elif current_cubing_state[40]=="W" and current_cubing_state[41]=="W" and current_cubing_state[43]=="W" and current_cubing_state[39]=="W" and current_cubing_state[38]=="W" and current_cubing_state[37]=="W" and current_cubing_state[0]=="W" and current_cubing_state[27]=="W" and current_cubing_state[18]=="W":
+        right()
+        up()
+        up()
+        right_inverted()
+        up_inverted()
+        right()
+        up_inverted()
+        right_inverted()
+    elif current_cubing_state[40]=="W" and current_cubing_state[39]=="W" and current_cubing_state[41]=="W" and current_cubing_state[37]=="W" and current_cubing_state[43]=="W" and current_cubing_state[0]=="W" and current_cubing_state[2]=="W" and current_cubing_state[18]=="W" and current_cubing_state[20]=="W":
+        right()
+        up()
+        right_inverted()
+        up()
+        right()
+        up_inverted()
+        right_inverted()
+        up()
+        right()
+        up()
+        up()
+        right_inverted()
+    elif current_cubing_state[36]=="W" and current_cubing_state[37]=="W" and current_cubing_state[39]=="W" and current_cubing_state[40]=="W" and current_cubing_state[41]=="W" and current_cubing_state[42]=="W" and current_cubing_state[43]=="W" and current_cubing_state[2]=="W" and current_cubing_state[27]=="W":
+        front()
+        right_inverted()
+        front_inverted()
+        right()
+        middle_inverted()
+        up()
+        right()
+        up_inverted()
+        right_inverted()
+        middle()
+    elif current_cubing_state[40]=="W" and current_cubing_state[39]=="W" and current_cubing_state[41]=="W" and current_cubing_state[37]=="W" and current_cubing_state[43]=="W" and current_cubing_state[9]=="W" and current_cubing_state[29]=="W" and current_cubing_state[18]=="W" and current_cubing_state[20]=="W":
+        right()
+        up()
+        up()
+        right()
+        right()
+        up_inverted()
+        right()
+        right()
+        up_inverted()
+        right()
+        right()
+        up()
+        up()
+        right()
+    elif current_cubing_state[37]=="W" and current_cubing_state[39]=="W" and current_cubing_state[40]=="W" and current_cubing_state[41]=="W" and current_cubing_state[42]=="W" and current_cubing_state[43]=="W" and current_cubing_state[29]=="W" and current_cubing_state[2]=="W" and current_cubing_state[11]=="W":
+        right()
+        up()
+        right_inverted()
+        up()
+        right()
+        up()
+        up()
+        right_inverted()
+    elif current_cubing_state[37]=="W" and current_cubing_state[38]=="W" and current_cubing_state[39]=="W" and current_cubing_state[40]=="W" and current_cubing_state[41]=="W" and current_cubing_state[43]=="W" and current_cubing_state[44]=="W" and current_cubing_state[27]=="W" and current_cubing_state[11]=="W":
+        right()
+        middle_inverted()
+        up()
+        right_inverted()
+        up_inverted()
+        right_inverted()
+        middle()
+        front()
+        right()
+        front_inverted()
+    elif current_cubing_state[36]=="W" and current_cubing_state[37]=="W" and current_cubing_state[38]=="W" and current_cubing_state[39]=="W" and current_cubing_state[40]=="W" and current_cubing_state[41]=="W" and current_cubing_state[43]=="W" and current_cubing_state[27]=="W" and current_cubing_state[29]=="W":
+        right()
+        right()
+        down()
+        right_inverted()
+        up()
+        up()
+        right()
+        down_inverted()
+        right_inverted()
+        up()
+        up()
+        right_inverted()
+    else:
+        up()
+    
+# endregion
+
+
+# region PLL
+# probably just a bunch of else if situations
+while current_cubing_state[0]!="R" or current_cubing_state[1]!="R" or current_cubing_state[2]!="R" or current_cubing_state[9]!="B" or current_cubing_state[10]!="B" or current_cubing_state[11]!="B" or current_cubing_state[18]!="O" or current_cubing_state[19]!="O" or current_cubing_state[20]!="O" or current_cubing_state[27]!="G" or current_cubing_state[28]!="G" or current_cubing_state[29]!= "G":
+    if current_cubing_state[27]== current_cubing_state[29] and current_cubing_state[19]==current_cubing_state[27] and current_cubing_state[28]== current_cubing_state[18] and current_cubing_state[18]==current_cubing_state[20]:
+        middle_inverted()
+        up()
+        middle()
+        middle()
+        up()
+        middle()
+        middle()
+        up()
+        middle_inverted()
+        up()
+        up()
+        middle()
+        middle()
+        up_inverted()
+    elif current_cubing_state[0]=="R" and current_cubing_state[1]=="O" and current_cubing_state[2]=="R" and current_cubing_state[9]=="B" and current_cubing_state[10]=="G" and current_cubing_state[11]=="B" and current_cubing_state[18]=="O" and current_cubing_state[19]=="R" and current_cubing_state[20]=="O" and current_cubing_state[27]=="G" and current_cubing_state[28]=="B" and current_cubing_state[29]== "G":
+        middle()
+        middle()
+        up()
+        middle()
+        middle()
+        up()
+        up()
+        middle()
+        middle()
+        up()
+        middle()
+        middle()
+    elif current_cubing_state[9]==current_cubing_state[10] and current_cubing_state[11]==current_cubing_state[9] and current_cubing_state[0]==current_cubing_state[2] and current_cubing_state[18]==current_cubing_state[20] and current_cubing_state[27]==current_cubing_state[29] and current_cubing_state[1]==current_cubing_state[18] and current_cubing_state[19]==current_cubing_state[27]:
+        right()
+        up_inverted()
+        right()
+        up()
+        right()
+        up()
+        right()
+        up_inverted()
+        right_inverted()
+        up_inverted()
+        right()
+        right()
+    elif current_cubing_state[9]==current_cubing_state[10] and current_cubing_state[11]==current_cubing_state[9] and current_cubing_state[0]==current_cubing_state[2] and current_cubing_state[18]==current_cubing_state[20] and current_cubing_state[27]==current_cubing_state[29] and current_cubing_state[1]==current_cubing_state[27] and current_cubing_state[19]==current_cubing_state[0]:
+        right()
+        right()
+        up()
+        right()
+        up()
+        right_inverted()
+        up_inverted()
+        right_inverted()
+        up_inverted()
+        right_inverted()
+        up()
+        right_inverted()
+    elif current_cubing_state[18]==current_cubing_state[20] and current_cubing_state[9]==current_cubing_state[29] and current_cubing_state[27]==current_cubing_state[2] and current_cubing_state[0]==current_cubing_state[11]:
+        right()
+        up()
+        right_inverted()
+        up_inverted()
+        right_inverted()
+        front()
+        right()
+        right()
+        up_inverted()
+        right_inverted()
+        up_inverted()
+        right()
+        up()
+        right_inverted()
+        front_inverted() 
+    elif current_cubing_state[27]==current_cubing_state[11] and current_cubing_state[9]==current_cubing_state[29] and current_cubing_state[0]==current_cubing_state[20] and current_cubing_state[18]==current_cubing_state[2]:
+        front()
+        right()
+        up_inverted()
+        right_inverted()
+        up_inverted()
+        right()
+        up()
+        right_inverted()
+        front_inverted()
+        right()
+        up()
+        right_inverted()
+        up_inverted()
+        right_inverted()
+        front()
+        right()
+        front_inverted()
+    else:
+        up()
+# endregion
+
+
+print(solving_algorithm)
+print(current_cubing_state)
